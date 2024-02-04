@@ -24,9 +24,9 @@ pipeline {
         }
         stage('Push'){
             steps{
-                sh 'docker ps'
 
                 script {
+                    sh 'docker ps'
                     def app = docker.build("RomainC75/test")
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {            
                         app.push("${env.BUILD_NUMBER}")            
