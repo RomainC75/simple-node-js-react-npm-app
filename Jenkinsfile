@@ -17,10 +17,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                app.inside {            
-                    sh 'echo Test!!'
-                    sh './jenkins/scripts/test.sh'
-                }  
+                script{
+                    app.inside {            
+                        sh 'echo Test!!'
+                        sh './jenkins/scripts/test.sh'
+                    }  
+                }
             }
         }
         stage('Push'){
