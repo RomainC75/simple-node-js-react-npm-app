@@ -8,11 +8,13 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
+                sh 'echo Build!!'
                 sh 'npm install' 
             }
         }
         stage('Test') {
             steps {
+                sh 'echo Test!!'
                 sh './jenkins/scripts/test.sh'
             }
         }
