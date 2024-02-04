@@ -24,6 +24,9 @@ pipeline {
         }
         stage('Push'){
             steps{
+                sh 'echo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+                sh 'docker ps'
+
                 script {
                     def app = docker.build("RomainC75/test")
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {            
