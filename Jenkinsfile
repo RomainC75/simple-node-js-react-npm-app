@@ -6,9 +6,9 @@ pipeline {
         }
     }
     stages {
-        def app
         stage('Build') { 
             steps {
+                def app
                 sh 'echo Build!!'
                 sh 'npm install'
                 app = docker.build("RomainC75/test")
@@ -25,9 +25,9 @@ pipeline {
         stage('Push'){
             step{
                 docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {            
-                app.push("${env.BUILD_NUMBER}")            
-                app.push("latest")        
-              }    
+                    app.push("${env.BUILD_NUMBER}")            
+                    app.push("latest")        
+                }    
             }
         }
         stage('Deliver') {
