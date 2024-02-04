@@ -6,16 +6,28 @@ pipeline {
         }
     }
     stages {
+        def app
         stage('Build') { 
             steps {
                 sh 'echo Build!!'
-                sh 'npm install' 
+                sh 'npm install'
+                app = docker.build("RomainC75/test")
             }
         }
         stage('Test') {
             steps {
-                sh 'echo Test!!'
-                sh './jenkins/scripts/test.sh'
+                app.inside {            
+                    sh 'echo Test!!'
+                    sh './jenkins/scripts/test.sh'
+                }  
+            }
+        }
+        stage('Push'){
+            step{
+                docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {            
+                app.push("${env.BUILD_NUMBER}")            
+                app.push("latest")        
+              }    
             }
         }
         stage('Deliver') {
