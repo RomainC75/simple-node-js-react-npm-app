@@ -24,7 +24,6 @@ pipeline {
         }
         stage('Push'){
             steps{
-                sh 'echo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
                 sh 'docker ps'
 
                 script {
