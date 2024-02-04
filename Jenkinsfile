@@ -8,10 +8,11 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                def app
+                script {
+                    def app = docker.build("RomainC75/test")
+                }
                 sh 'echo Build!!'
                 sh 'npm install'
-                app = docker.build("RomainC75/test")
             }
         }
         stage('Test') {
