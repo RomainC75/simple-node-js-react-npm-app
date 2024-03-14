@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'docker build -t RomainC75/test .'
+                // sh 'docker build -t RomainC75/test .'
+                sh 'npm install'
             }
         }
         stage('Test') { 
